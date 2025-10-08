@@ -14,12 +14,17 @@ router.route('/').get(async (req, res) => {
 
 // POST request to save a new observation
 router.route('/').post(async (req, res) => {
-  const { auditorName, auditeeName, observation, category, startDate, endDate } = req.body;
+  const { auditorName, auditeeName, location, observation, category, startDate, endDate } = req.body;
+
+  if (!location) {
+    return res.status(400).json({ error: 'Location is required' });
+  }
 
   try {
     const newObservation = new Observation({
       auditorName,
       auditeeName,
+      location, // Save location
       observation,
       category,
       startDate,

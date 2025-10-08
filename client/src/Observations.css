@@ -1,4 +1,4 @@
-/* General container for the entire observations page */
+/* ===== General container for the entire observations page ===== */
 .observations-container {
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
     position: relative;
 }
 
-/* Container for the form to add a new observation */
+/* ===== Form Container ===== */
 .form-container {
     background-color: #ffffff;
     padding: 2rem;
@@ -21,7 +21,6 @@
     margin-bottom: 2rem;
 }
 
-/* Form heading style */
 .form-heading {
     color: #333;
     font-size: 1.8rem;
@@ -29,7 +28,6 @@
     text-align: center;
 }
 
-/* General form group for labels and inputs */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -57,8 +55,8 @@
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    border-color: #00aaff;
+    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.2);
 }
 
 .form-group textarea {
@@ -66,18 +64,23 @@
     min-height: 100px;
 }
 
-/* Button styling */
+/* ===== Buttons ===== */
+.save-btn,
+.download-btn,
+.close-btn {
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
 .save-btn {
     width: 100%;
     padding: 15px;
     background-color: #4CAF50;
     color: white;
-    border: none;
-    border-radius: 6px;
     font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .save-btn:hover {
@@ -85,110 +88,222 @@
     transform: translateY(-2px);
 }
 
-/* Success message popup styling */
+.download-btn {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 18px;
+}
+
+.download-btn:hover {
+    background-color: #1976D2;
+    transform: translateY(-2px);
+}
+
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 18px;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+}
+
+/* ===== Success Popup ===== */
 .success-popup {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    padding: 16px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 3000;
+    animation: slideDown 0.4s ease-out, fadeOut 0.6s ease-in 1.6s forwards;
+}
+
+.success-popup::before {
+    content: "✔";
+    background-color: white;
+    color: #2E7D32;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 5px 9px;
+    font-size: 1rem;
+}
+
+@keyframes slideDown {
+    from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
+
+/* ===== Modern Observations Table ===== */
+.observations-table-container {
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* subtle container shadow */
+    background-color: #fff; /* table container background */
+}
+
+.observations-table {
+    width: 100%;
+    border-collapse: separate; /* allow rounded corners */
+    border-spacing: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+}
+
+.observations-table th,
+.observations-table td {
+    padding: 14px 18px;
+    text-align: left;
+    color: #333;
+}
+
+/* Solid blue header */
+.observations-table th {
+    background-color: #00aaff;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+/* Rounded corners for header */
+.observations-table th:first-child {
+    border-top-left-radius: 12px;
+}
+.observations-table th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Alternate row colors */
+.observations-table tbody tr:nth-child(even) {
+    background-color: #f0f8ff;
+}
+.observations-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Row hover effect */
+.observations-table tbody tr:hover {
+    background-color: #e0f4ff;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Rounded corners for last row */
+.observations-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+}
+.observations-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+}
+
+/* Optional subtle shadow on each row */
+.observations-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+/* Table scroll for smaller screens */
+.observations-table-container::-webkit-scrollbar {
+    height: 8px;
+}
+.observations-table-container::-webkit-scrollbar-thumb {
+    background: #00aaff;
+    border-radius: 4px;
+}
+.observations-table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+/* ===== Section Heading ===== */
+.section-heading {
+    display: inline-block;
+    background-color: #00aaff;
+    color: black;
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    margin: 30px 0 15px 0;
+}
+
+/* ===== Observation Modal ===== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    animation: fadeInOverlay 0.3s ease-in-out;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.observation-modal {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: translate(-50%, -50%) scale(1);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     z-index: 1000;
-    font-size: 1.2rem;
-    font-weight: bold;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translate(-50%, -60%) scale(0.95); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.observation-modal h3 {
+    margin-bottom: 15px;
+    color: #007bff;
     text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
-    }
-}
-
-/* Observations list container */
-.observations-list {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-}
-
-.list-heading {
+.observation-modal p {
+    margin: 8px 0;
     color: #333;
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 1rem;
 }
 
-/* Individual observation item */
-.observation-item {
-    padding: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-    background-color: #f9f9f9;
+.modal-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.observation-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-}
-
-.observation-text {
-    margin: 0;
-    color: #444;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.observation-category {
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #fff;
-    align-self: flex-start;
-}
-
-/* Category-specific colors */
-.on-plan {
-    background-color: #4CAF50; /* Green */
-}
-
-.needs-attention {
-    background-color: #ff9800; /* Orange */
-}
-
-.trouble {
-    background-color: #f44336; /* Red */
-}
-
-/* Message for no observations */
-.no-observations {
-    text-align: center;
-    color: #777;
-    font-style: italic;
-    margin-top: 1rem;
-}
-
-/* Loading and error messages */
+/* ===== Loading / Error messages ===== */
 .loading, .error {
     text-align: center;
     font-size: 1.2rem;
@@ -196,80 +311,5 @@
     margin-top: 2rem;
 }
 
-.loading {
-    color: #3f8ce7;
-}
-
-.error {
-    color: #f44336;
-}
-
-/* Observations Table */
-.observations-table-container {
-    width: 100%;
-    max-width: 900px;
-    overflow-x: auto;
-    margin-bottom: 2rem;
-}
-
-.observations-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.observations-table th,
-.observations-table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
-    cursor: pointer;
-}
-
-.observations-table th {
-    background-color: #007bff;
-    color: #fff;
-}
-
-/* Row hover effect */
-.observations-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Observation Detail Popup */
-.observation-detail-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    max-width: 90%;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-    padding: 20px;
-    z-index: 1000;
-}
-
-.observation-detail-popup h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.observation-detail-popup p {
-    margin: 6px 0;
-}
-
-.close-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.close-btn:hover {
-    background-color: #d32f2f;
-}
+.loading { color: #3f8ce7; }
+.error { color: #f44336; }
