@@ -16,6 +16,10 @@ const Observations = () => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [selectedObservation, setSelectedObservation] = useState(null);
 
+    // Get current user and role
+    const role = localStorage.getItem('role'); // "user" or "admin"
+    const currentUser = localStorage.getItem('username');
+
     // Fetch existing observations
     const fetchObservations = async () => {
         try {
@@ -74,11 +78,13 @@ const Observations = () => {
         }
     };
 
-    // Export observations to CSV
+    // Export observations to CSV (filtered)
     const exportCSV = () => {
-        if (observations.length === 0) return;
+        const filteredObservations = observations.filter(obs => role === 'admin' || obs.auditorName === currentUser);
+        if (filteredObservations.length === 0) return;
+
         const headers = ['Auditor', 'Auditee', 'Location', 'Observation', 'Category', 'Start Date', 'End Date', 'Timestamp'];
-        const rows = observations.map(obs => [
+        const rows = filteredObservations.map(obs => [
             obs.auditorName,
             obs.auditeeName,
             obs.location,
@@ -110,7 +116,7 @@ const Observations = () => {
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
-        doc.text("Observation Details", 105, 20, null, null, "center"); // centered
+        doc.text("Observation Details", 105, 20, null, null, "center");
 
         doc.setFont("helvetica", "normal");
         doc.setFontSize(12);
@@ -189,10 +195,8 @@ const Observations = () => {
                 </form>
             </div>
 
-            {/* Previous Observations Heading */}
+            {/* Previous Observations Table */}
             <h2 className="section-heading">Previous Observations</h2>
-
-            {/* Observations Table */}
             <div className="observations-table-container">
                 <table className="observations-table">
                     <thead>
@@ -207,17 +211,19 @@ const Observations = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {observations.map((obs, idx) => (
-                            <tr key={idx} onClick={() => setSelectedObservation(obs)}>
-                                <td>{obs.auditorName}</td>
-                                <td>{obs.auditeeName}</td>
-                                <td>{obs.location || '-'}</td>
-                                <td>{obs.category}</td>
-                                <td>{obs.startDate ? new Date(obs.startDate).toLocaleDateString() : '-'}</td>
-                                <td>{obs.endDate ? new Date(obs.endDate).toLocaleDateString() : '-'}</td>
-                                <td>{obs.timestamp ? new Date(obs.timestamp).toLocaleString() : '-'}</td>
-                            </tr>
-                        ))}
+                        {observations
+                            .filter(obs => role === 'admin' || obs.auditorName === currentUser)
+                            .map((obs, idx) => (
+                                <tr key={idx} onClick={() => setSelectedObservation(obs)}>
+                                    <td>{obs.auditorName}</td>
+                                    <td>{obs.auditeeName}</td>
+                                    <td>{obs.location || '-'}</td>
+                                    <td>{obs.category}</td>
+                                    <td>{obs.startDate ? new Date(obs.startDate).toLocaleDateString() : '-'}</td>
+                                    <td>{obs.endDate ? new Date(obs.endDate).toLocaleDateString() : '-'}</td>
+                                    <td>{obs.timestamp ? new Date(obs.timestamp).toLocaleString() : '-'}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>
