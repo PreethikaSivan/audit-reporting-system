@@ -1,0 +1,135 @@
+/* Reset unwanted margins/paddings */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: auto;        /* let it grow */
+    min-height: 100%;    /* allow expansion */
+    overflow-y: auto;    /* enable scrolling */
+}
+
+/* Main dashboard container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+   
+    background-color: #f4f7f9;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content area, including charts and table */
+.main-content {
+    flex-grow: 1;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Main heading for the dashboard content */
+.content-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.chart-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+
+/* Container for each individual chart */
+.chart-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    flex: 1 1 45%; /* Allows two charts per row on larger screens */
+    min-width: 300px; /* Prevents charts from getting too small */
+}
+
+.recharts-responsive-container {
+    margin: 0 auto;
+}
+
+.full-width-chart {
+    flex: 1 1 100%;
+}
+
+.chart-container h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+/* Styles for the statistics table */
+.stats-table-container {
+    width: 100%;
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.stats-heading {
+    background-color: #34495e;
+    color: white;
+}
+
+.stats-heading th {
+    padding: 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.stats-columns {
+    background-color: #4a69bd;
+    color: white;
+    font-weight: bold;
+}
+
+.stats-columns th {
+    padding: 1rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stats-columns th:last-child {
+    border-right: none;
+}
+
+.stats-values {
+    background-color: #ecf0f1;
+}
+
+.stats-values td {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+}

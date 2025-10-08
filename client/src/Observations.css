@@ -1,0 +1,275 @@
+/* General container for the entire observations page */
+.observations-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f4f7f9;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Container for the form to add a new observation */
+.form-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* Form heading style */
+.form-heading {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* General form group for labels and inputs */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button styling */
+.save-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Success message popup styling */
+.success-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Observations list container */
+.observations-list {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.list-heading {
+    color: #333;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+}
+
+/* Individual observation item */
+.observation-item {
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.observation-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.observation-text {
+    margin: 0;
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.observation-category {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    align-self: flex-start;
+}
+
+/* Category-specific colors */
+.on-plan {
+    background-color: #4CAF50; /* Green */
+}
+
+.needs-attention {
+    background-color: #ff9800; /* Orange */
+}
+
+.trouble {
+    background-color: #f44336; /* Red */
+}
+
+/* Message for no observations */
+.no-observations {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Loading and error messages */
+.loading, .error {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.loading {
+    color: #3f8ce7;
+}
+
+.error {
+    color: #f44336;
+}
+
+/* Observations Table */
+.observations-table-container {
+    width: 100%;
+    max-width: 900px;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.observations-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.observations-table th,
+.observations-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    cursor: pointer;
+}
+
+.observations-table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Row hover effect */
+.observations-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Observation Detail Popup */
+.observation-detail-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.observation-detail-popup h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.observation-detail-popup p {
+    margin: 6px 0;
+}
+
+.close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-btn:hover {
+    background-color: #d32f2f;
+}

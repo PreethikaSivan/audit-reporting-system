@@ -1,0 +1,19 @@
+/* index.css - Global reset */
+
+/* Remove default body/html spacing */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Ensure app fills full width */
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+/* Optional: reset all elements */
+* {
+  box-sizing: border-box;
+}
